@@ -47,9 +47,10 @@ class Contender {
 
 //Enemies player must avoid
 class Enemy{
-    constructor(x, y){
+    constructor(x, y, rate){
         this.x = x;
-        this.y = y;
+        this.y = y + 65;
+        this.rate = rate;
         this.sprite = "images/enemy-bug.png"
         this.acrossX = 101;
         this.boundary = this.acrossX * 6;
@@ -58,7 +59,7 @@ class Enemy{
     //update enemy locations
     update(dt){
         if(this.x < this.boundary){
-            this.x += 210 * dt; //places the enemy off the screen
+            this.x += this.rate * dt; //places the enemy off the screen
         } else {
             this.x = this.restartPosition; //places the enemy back at the beginning of the x-axis after crossing the boundary
         }
@@ -72,10 +73,10 @@ class Enemy{
 }
 
 const player = new Contender();
-const enemy1 = new Enemy(-101, 0);
-const enemy2 = new Enemy(-300, 83);
-const enemy3 = new Enemy((-200*2.5), 150);
-const enemy4 = new Enemy((-200*4), 200);
+const enemy1 = new Enemy(-101, 0, 200);
+const enemy2 = new Enemy(-300, 83, 250);
+const enemy3 = new Enemy((-200*2.5), 150, 300);
+const enemy4 = new Enemy((-200*4), 200, 350);
 const allEnemies = [];  
 allEnemies.push(enemy1, enemy2, enemy3, enemy4);
 
