@@ -45,22 +45,30 @@ class Contender {
     }
 }
 
-// Enemies our player must avoid
-var Enemy = function (x, y) {
+//Enemies player must avoid
+class Enemy{
+    constructor(x, y){
         this.x = x;
         this.y = y;
         this.sprite = "images/enemy-bug.png"
         this.step = 101;
         this.boundary = this.step * 6;
     }
-
-Enemy.prototype.update = function(dt) {
-    if(this.x < this.boundary){
-        this.x += 210 * dt;
-    } else {
-        this.x = 0;
+    //update enemy locations
+    update(dt){
+        if(this.x < this.boundary){
+            this.x += 210 * dt;
+        } else {
+            this.x = 0;
+        }
     }
-};
+    // Draw the enemy on the screen, required method for game
+    render(){
+        Enemy.prototype.render = function() {
+            ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+        };
+    }
+}
 
 const player = new Contender();
 const enemy1 = new Enemy(-101, 0);
@@ -68,13 +76,7 @@ const enemy2 = new Enemy(-300, 83);
 const enemy3 = new Enemy((-200*2.5), 150);
 const enemy4 = new Enemy((-200*4), 200);
 const allEnemies = [];  
-allEnemies.push(enemy1, enemy2, enemy3, enemy4);    
-
-
-// Draw the enemy on the screen, required method for game
-Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
+allEnemies.push(enemy1, enemy2, enemy3, enemy4);
 
 //=======================================================================
 
