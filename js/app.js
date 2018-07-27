@@ -31,9 +31,9 @@ class Contender {
             this.x += this.acrossX;
         } else if(input === "down" && this.y < this.bottomBoundary){
             this.y += this.levelY;
-            console.log(this.y);
         } 
     }
+    //update of enemy positions in relation to sprite 
     upate(){
         for(let i = 0; i < allEnemies.length; i++){
             console.log(i);
@@ -51,18 +51,19 @@ class Enemy{
         this.x = x;
         this.y = y;
         this.sprite = "images/enemy-bug.png"
-        this.step = 101;
-        this.boundary = this.step * 6;
+        this.acrossX = 101;
+        this.boundary = this.acrossX * 6;
+        this.restartPosition = this.acrossX - (this.acrossX * 5)
     }
     //update enemy locations
     update(dt){
         if(this.x < this.boundary){
-            this.x += 210 * dt;
+            this.x += 210 * dt; //places the enemy off the screen
         } else {
-            this.x = 0;
+            this.x = this.restartPosition; //places the enemy back at the beginning of the x-axis after crossing the boundary
         }
     }
-    // Draw the enemy on the screen, required method for game
+    //draw the enemy on the screen, required method for game
     render(){
         Enemy.prototype.render = function() {
             ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
