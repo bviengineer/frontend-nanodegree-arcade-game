@@ -1,25 +1,82 @@
+//My Character
+class Contender {
+    constructor(){
+        this.acrossX = 101; //player incremental position as they traverse along the x-axis
+        this.levelY = 83; //player incremental position as they traverse along the y-axis
+        
+        this.startPositionX = this.acrossX * 2; //player's calculated starting position along x-axis
+        this.startPositionY = this.levelY * 5; //player calculated starting position along y-axis
+
+        this.x = this.startPositionX; //player start position on the x-axis passedd into the canvas
+        this.y = this.startPositionY; //player start position on the y-axis passed into the canvas
+
+        this.topBoundary = this.y - this.y;
+        this.rightBoundary = this.x * 2;
+        this.leftBoundary = this.x - this.x;
+        this.bottomBoundary = this.y;
+        
+        this.sprite = "images/char-boy.png";
+    }
+    //display of sprite image on game board
+    render() {
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y)
+    }
+    //controls sprite movement along game board
+    handleInput(input){
+    if(input === "left" && this.x > this.leftBoundary){
+            this.x -= this.acrossX;
+        } else if(input === "up" && this.y > this.topBoundary){
+            this.y -= this.levelY;  
+        } else if(input === "right" && this.x < this.rightBoundary){ 
+            this.x += this.acrossX;
+        } else if(input === "down" && this.y < this.bottomBoundary){
+            this.y += this.levelY;
+            console.log(this.y);
+        } 
+    }
+    upate(){
+        for(let i = 0; i < allEnemies.length; i++){
+            console.log(i);
+            if(this.y === enemy.drawImage){
+                console.log("same row")
+            }
+            console.log(this.y, enemy.y);
+        }
+    }
+}
+
 // Enemies our player must avoid
-var Enemy = function() {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
+var Enemy = function (x, y) {
+        this.x = x;
+        this.y = y;
+        this.sprite = "images/enemy-bug.png"
+        this.step = 101;
+        this.boundary = this.step * 6;
+    }
 
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
-    this.sprite = 'images/enemy-bug.png';
-};
-
-// Update the enemy's position, required method for game
-// Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
+    if(this.x < this.boundary){
+        this.x += 210 * dt;
+    } else {
+        this.x = 0;
+    }
 };
+
+const player = new Contender();
+const enemy1 = new Enemy(-101, 0);
+const enemy2 = new Enemy(-300, 83);
+const enemy3 = new Enemy((-200*2.5), 150);
+const enemy4 = new Enemy((-200*4), 200);
+const allEnemies = [];  
+allEnemies.push(enemy1, enemy2, enemy3, enemy4);    
+
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
+
+//=======================================================================
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -44,3 +101,5 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+// Properties that both the Player and Enemy share
