@@ -1,20 +1,22 @@
 //My Character
 class Contender {
     constructor(){
-        this.acrossX = 101; //player incremental position as they traverse along the x-axis
-        this.levelY = 83; //player incremental position as they traverse along the y-axis
+        this.acrossX = 101; //player incremental position as they traverse across the x-axis
+        this.levelY = 83; //player incremental position as they traverse up and down the y-axis
         
-        this.startPositionX = this.acrossX * 2; //player's calculated starting position along x-axis
-        this.startPositionY = this.levelY * 5; //player calculated starting position along y-axis
+        this.startPositionX = this.acrossX * 2; //player's calculated starting position across x-axis
+        this.startPositionY = (this.levelY * 4) + 70; //player calculated starting position across y-axis
 
         this.x = this.startPositionX; //player start position on the x-axis passedd into the canvas
         this.y = this.startPositionY; //player start position on the y-axis passed into the canvas
 
+        //player boundaries on game board 
         this.topBoundary = this.y - this.y;
         this.rightBoundary = this.x * 2;
         this.leftBoundary = this.x - this.x;
         this.bottomBoundary = this.y;
         
+        //character/sprite image 
         this.sprite = "images/char-boy.png";
     }
     //display of sprite image on game board
@@ -33,28 +35,41 @@ class Contender {
             this.y += this.levelY;
         } 
     }
-    //update of enemy positions in relation to sprite 
-    upate(){
+    //update of enemy positions in relation to sprite
+    update(){
         for(let i = 0; i < allEnemies.length; i++){
-            console.log(i);
-            if(this.y === enemy.drawImage){
-                console.log("same row")
+            if(this. y === allEnemies[i].y)
+                /*(this.y - allEnemies[i].y) >= allEnemies[i].lowerCollisionRange && 
+            (this.y - allEnemies[i].y) <= allEnemies[i].upperCollisionRange ||
+            (this.y - this.levelY - allEnemies[i].y) >= allEnemies[i].lowerCollisionRange && 
+            (this.y - this.levelY - allEnemies[i].y) <= allEnemies[i].upperCollisionRange &&
+            allEnemies[i].x >= allEnemies[i].lowerCollisionRange && 
+            allEnemies[i].x <= (allEnemies[i].upperCollisionRange + 345))*/{
+                //console.log("collision", "Y: ", this.y, allEnemies[i].y, " X: ", this.x, allEnemies[i].x);
+                //alert("collide");
+            console.log("same row this is bug #", [i], allEnemies[i], this.y, allEnemies[i].y);
             }
-            console.log(this.y, enemy.y);
+            //console.log([0], allEnemies[0].y, [1], allEnemies[1].y, [2], allEnemies[2].y, [3], allEnemies[3].y);
         }
     }
 }
+
+//creates a player
+const player = new Contender();
 
 //Enemies player must avoid
 class Enemy{
     constructor(x, y, rate){
         this.x = x;
-        this.y = y + 65;
+        this.y = y + 70;
         this.rate = rate;
         this.sprite = "images/enemy-bug.png"
         this.acrossX = 101;
+        this.levelY = 83; //new for testing 
         this.boundary = this.acrossX * 6;
         this.restartPosition = this.acrossX - (this.acrossX * 5)
+        this.lowerCollisionRange = 0;
+        this.upperCollisionRange = 10;
     }
     //update enemy locations
     update(dt){
@@ -72,11 +87,13 @@ class Enemy{
     }
 }
 
-const player = new Contender();
-const enemy1 = new Enemy(-101, 0, 200);
-const enemy2 = new Enemy(-300, 83, 250);
-const enemy3 = new Enemy((-200*2.5), 150, 300);
-const enemy4 = new Enemy((-200*4), 200, 350);
+//creates enemy bugs
+const enemy1 = new Enemy(-101, 0, 75);
+const enemy2 = new Enemy(-300, 83, 150);
+const enemy3 = new Enemy((-200*2.5), 166, 100);
+const enemy4 = new Enemy((-200*4), 249, 50);
+
+//array for enemy bugs
 const allEnemies = [];  
 allEnemies.push(enemy1, enemy2, enemy3, enemy4);
 
