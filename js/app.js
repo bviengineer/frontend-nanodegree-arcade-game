@@ -16,14 +16,14 @@ class Contender {
         this.leftBoundary = this.x - this.x;
         this.bottomBoundary = this.y;
         
-        //character/sprite image 
+        //character or sprite image 
         this.sprite = "images/char-boy.png";
     }
     //display of sprite image on game board
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y)
     }
-    //controls sprite movement along game board
+    //set boundaries for sprite to remain within the game board
     handleInput(input){
     if(input === "left" && this.x > this.leftBoundary){
             this.x -= this.acrossX;
@@ -38,18 +38,13 @@ class Contender {
     //update of enemy positions in relation to sprite
     update(){
         for(let i = 0; i < allEnemies.length; i++){
-            if(this. y === allEnemies[i].y)
-                /*(this.y - allEnemies[i].y) >= allEnemies[i].lowerCollisionRange && 
-            (this.y - allEnemies[i].y) <= allEnemies[i].upperCollisionRange ||
-            (this.y - this.levelY - allEnemies[i].y) >= allEnemies[i].lowerCollisionRange && 
-            (this.y - this.levelY - allEnemies[i].y) <= allEnemies[i].upperCollisionRange &&
-            allEnemies[i].x >= allEnemies[i].lowerCollisionRange && 
-            allEnemies[i].x <= (allEnemies[i].upperCollisionRange + 345))*/{
-                //console.log("collision", "Y: ", this.y, allEnemies[i].y, " X: ", this.x, allEnemies[i].x);
-                //alert("collide");
-            console.log("same row this is bug #", [i], allEnemies[i], this.y, allEnemies[i].y);
+            if(this.y === allEnemies[i].y && (allEnemies[i].x + allEnemies[i].acrossX /4) > this.x && allEnemies[i].x < (this.x + this.acrossX / 4)){
+                console.log("collision", "Y: ", this.y, allEnemies[i].y, "X: ", this.x, allEnemies[i].x);
+               alert("collide");
+            console.log(/*"same row this is bug #", [i], allEnemies[i], this.y, allEnemies[i].y)*/ allEnemies[i].lowerCollisionRange);
             }
             //console.log([0], allEnemies[0].y, [1], allEnemies[1].y, [2], allEnemies[2].y, [3], allEnemies[3].y);
+            //console.log(allEnemies[i].lowerCollisionRange);
         }
     }
 }
@@ -65,11 +60,8 @@ class Enemy{
         this.rate = rate;
         this.sprite = "images/enemy-bug.png"
         this.acrossX = 101;
-        this.levelY = 83; //new for testing 
         this.boundary = this.acrossX * 6;
-        this.restartPosition = this.acrossX - (this.acrossX * 5)
-        this.lowerCollisionRange = 0;
-        this.upperCollisionRange = 10;
+        this.restartPosition = this.acrossX - (this.acrossX * 5);
     }
     //update enemy locations
     update(dt){
@@ -88,10 +80,10 @@ class Enemy{
 }
 
 //creates enemy bugs
-const enemy1 = new Enemy(-101, 0, 75);
-const enemy2 = new Enemy(-300, 83, 150);
-const enemy3 = new Enemy((-200*2.5), 166, 100);
-const enemy4 = new Enemy((-200*4), 249, 50);
+const enemy1 = new Enemy(-101, 0, 100);
+const enemy2 = new Enemy(-300, 83, 250);
+const enemy3 = new Enemy((-200*2.5), 166, 300);
+const enemy4 = new Enemy((-200*4), 249, 350);
 
 //array for enemy bugs
 const allEnemies = [];  
