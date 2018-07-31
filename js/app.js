@@ -36,16 +36,20 @@ class Contender {
         } 
     }
     //update of enemy positions in relation to sprite
-    update(){
+   update(){
         for(let i = 0; i < allEnemies.length; i++){
-            if(this.y === allEnemies[i].y && (allEnemies[i].x + allEnemies[i].acrossX /4) > this.x && allEnemies[i].x < (this.x + this.acrossX / 4)){
-                console.log("collision", "Y: ", this.y, allEnemies[i].y, "X: ", this.x, allEnemies[i].x);
-               alert("collide");
-            console.log(/*"same row this is bug #", [i], allEnemies[i], this.y, allEnemies[i].y)*/ allEnemies[i].lowerCollisionRange);
+            if(this.y === allEnemies[i].y && 
+                (allEnemies[i].x + allEnemies[i].acrossX /4) > this.x && 
+                allEnemies[i].x < (this.x + this.acrossX / 4)){
+
+               this.restartGame();
             }
-            //console.log([0], allEnemies[0].y, [1], allEnemies[1].y, [2], allEnemies[2].y, [3], allEnemies[3].y);
-            //console.log(allEnemies[i].lowerCollisionRange);
         }
+    }
+    //resets game in the event of a collision
+    restartGame(){
+        this.x = this.startPositionX;
+        this.y = this.startPositionY;
     }
 }
 
