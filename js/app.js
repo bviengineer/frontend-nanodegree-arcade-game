@@ -18,12 +18,14 @@ class Contender {
         
         //character or sprite image 
         this.sprite = "images/char-boy.png";
+
+        this.points = 0;
     }
     //display of sprite image on game board
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y)
     }
-    //set boundaries for sprite to remain within the game board
+    //sets boundaries for sprite to remain within the game board
     handleInput(input){
     if(input === "left" && this.x > this.leftBoundary){
             this.x -= this.acrossX;
@@ -57,7 +59,8 @@ class Contender {
     playerPoints(){
         if(this.y <= this.topBoundary){
             console.log(this.x, this.y, " you won the game");
-        }
+            // this.points = this.points + 100;
+        }   //console.log(this.points);
     }
 }
 
