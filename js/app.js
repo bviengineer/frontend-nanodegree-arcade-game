@@ -84,7 +84,7 @@ class Enemy{
 }
 
 //creates enemy bugs
-const enemy1 = new Enemy(-101, 0, 100);
+const enemy1 = new Enemy(-101, 0, 175);
 const enemy2 = new Enemy(-300, 83, 250);
 const enemy3 = new Enemy((-200*2.5), 166, 300);
 const enemy4 = new Enemy((-200*4), 249, 350);
