@@ -43,6 +43,8 @@ class Contender {
                 allEnemies[i].x < (this.x + this.acrossX / 4)){
 
                this.restartGame();
+            } else{
+                this.playerPoints();
             }
         }
     }
@@ -50,6 +52,12 @@ class Contender {
     restartGame(){
         this.x = this.startPositionX;
         this.y = this.startPositionY;
+    }
+    //player points
+    playerPoints(){
+        if(this.y <= this.topBoundary){
+            console.log(this.x, this.y, " you won the game");
+        }
     }
 }
 
@@ -79,7 +87,7 @@ class Enemy{
     render(){
         Enemy.prototype.render = function() {
             ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-        };
+        }
     }
 }
 
