@@ -19,7 +19,9 @@ class Contender {
         //character or sprite image 
         this.sprite = "images/char-boy.png";
 
+        //player points/wins
         this.points = 0;
+        this.success = false;
     }
     //display of sprite image on game board
     render() {
@@ -58,7 +60,8 @@ class Contender {
     //player points
     playerPoints(){
         if(this.y <= this.topBoundary){
-            console.log(this.x, this.y, " you won the game");
+            this.success = true;
+            console.log(this.x, this.y, " you won the game", this.success);
             // this.points = this.points + 100;
         }   //console.log(this.points);
     }
@@ -95,9 +98,9 @@ class Enemy{
 }
 
 //creates enemy bugs
-const enemy1 = new Enemy(-101, 0, 175);
-const enemy2 = new Enemy(-300, 83, 250);
-const enemy3 = new Enemy((-200*2.5), 166, 300);
+const enemy1 = new Enemy(-101, 0, 275);
+const enemy2 = new Enemy(-300, 83, 200);
+const enemy3 = new Enemy((-200*2.5), 166, 450);
 const enemy4 = new Enemy((-200*4), 249, 350);
 
 //array for enemy bugs
