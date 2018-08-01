@@ -23,6 +23,7 @@ var Engine = (function(global) {
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
         lastTime;
+    var requestId;
 
     canvas.width = 505;
     canvas.height = 606;
@@ -55,7 +56,11 @@ var Engine = (function(global) {
         /* Use the browser's requestAnimationFrame function to call this
          * function again as soon as the browser is able to draw another frame.
          */
-        win.requestAnimationFrame(main);
+        if(player.success === true){
+            win.cancelAnimationFrame(requestId);
+        } else {
+            requestId = win.requestAnimationFrame(main);
+        }
     }
 
     /* This function does some initial setup that should only occur once,
@@ -93,7 +98,7 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) { //this controls the gameboard appearing and disappearing 
             enemy.update(dt);
         });
-        // player.update();
+        player.update();
     }
 
     /* This function initially draws the "game level", it will then call
