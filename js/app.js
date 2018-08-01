@@ -1,3 +1,34 @@
+//Nodes
+let modal = document.getElementById("modal-container"),
+    closeModal = document.getElementById("close-window-text"),
+    modalContent = document.getElementById("modal-content"),
+    playAgainButton = document.createElement("button"); //for restaring game from modal
+
+//closes modal window
+closeModal.addEventListener("click", function(){
+    modal.style.display = "none";    
+});
+
+//Appears after player wins game
+function playerWonModal(){  
+    modalContent.innerHTML ="<p>Great job! You made it to the finishline and defeated all the enemy bugs made</p";
+    
+    //creates, styles and append to modal, button to restart game from modal  
+    playAgainButton.innerHTML = "<strong>Play Again</strong>";
+    playAgainButton.style.backgroundColor = "cadetblue";
+    playAgainButton.style.fontSize = "1em";
+    playAgainButton.style.color = "white";
+    modalContent.appendChild(playAgainButton); 
+
+    modal.style.display = "inline";
+}
+
+playAgainButton.addEventListener("click", function(){
+    modal.style.display = "none";
+    
+    player.restartGame();
+});
+
 //My Character
 class Contender {
     constructor(){
@@ -39,31 +70,32 @@ class Contender {
             this.y += this.levelY;
         } 
     }
-    //update of enemy positions in relation to sprite
+    //checks for a collision between contender & any one enemy
    update(){
         for(let i = 0; i < allEnemies.length; i++){
             if(this.y === allEnemies[i].y && 
                 (allEnemies[i].x + allEnemies[i].acrossX /4) > this.x && 
                 allEnemies[i].x < (this.x + this.acrossX / 4)){
-
-               this.restartGame();
+                    this.restartGame();                    
+                    allEnemies[i].startOverModal();
+                    allEnemies[i].caughtPlayer = true;
             } else{
-                this.playerPoints();
+                this.playerPoints(); //to be developed
             }
         }
     }
-    //resets game in the event of a collision
+    //resets player position in the event of a collision
     restartGame(){
         this.x = this.startPositionX;
-        this.y = this.startPositionY;
+        this.y = this.startPositionY;  
     }
-    //player points
+    //player points [TO BE FURTHER DEVELOPED]
     playerPoints(){
         if(this.y <= this.topBoundary){
             this.success = true;
             console.log(this.x, this.y, " you won the game", this.success);
-            // this.points = this.points + 100;
-        }   //console.log(this.points);
+            playerWonModal();
+        }
     }
 }
 
@@ -80,6 +112,7 @@ class Enemy{
         this.acrossX = 101;
         this.boundary = this.acrossX * 6;
         this.restartPosition = this.acrossX - (this.acrossX * 5);
+        this.caughtPlayer = false;
     }
     //update enemy locations
     update(dt){
@@ -94,6 +127,11 @@ class Enemy{
         Enemy.prototype.render = function() {
             ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
         }
+    }
+    //Notifies player to start over in the event after they bump into an enemy bug
+    startOverModal(){
+        modalContent.innerHTML ="<p>sorry, you bumped into a bug, please start over!</p>";
+        modal.style.display = "inline";
     }
 }
 
