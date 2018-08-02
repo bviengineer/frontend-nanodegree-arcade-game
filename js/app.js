@@ -89,14 +89,20 @@ class Enemy{
 }
 
 //creates enemy bugs
-const enemy1 = new Enemy(-101, 0, 275);
-const enemy2 = new Enemy(-300, 83, 200);
-const enemy3 = new Enemy((-200*2.5), 166, 450);
-const enemy4 = new Enemy((-200*4), 249, 350);
+const enemy1 = new Enemy(-101, 0, 475);
+const enemy2 = new Enemy(-300, 83, 575);
+const enemy3 = new Enemy((-200*2.5), 166, 600);
+const enemy4 = new Enemy((-200*4), 249, 700);
+const enemy5 = new Enemy((-200), 249, 800);
+const enemy6 = new Enemy((-200), 280, 900);
+const enemy7 = new Enemy((-200), 90, 875);
+const enemy8 = new Enemy((-120), 10, 975);
+const enemy9 = new Enemy((-220), 90, 675);
+const enemy10 = new Enemy((-200), 100, 550);
 
 //array for enemy bugs
 const allEnemies = [];  
-allEnemies.push(enemy1, enemy2, enemy3, enemy4);
+allEnemies.push(enemy1, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7);
 
 //=======================================================================
 
