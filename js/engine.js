@@ -56,19 +56,10 @@
         /* Use the browser's requestAnimationFrame function to call this
          * function again as soon as the browser is able to draw another frame.
          */
-        if(player.success === true){
-            win.cancelAnimationFrame(requestId);
-        } else if(enemy1.caughtPlayer === true || enemy2.caughtPlayer === true  || enemy3.caughtPlayer === true || enemy4.caughtPlayer === true){
-            win.cancelAnimationFrame(requestId);
-            setTimeout(requestId = win.requestAnimationFrame(main), 30);
-        } else {
-            requestId = win.requestAnimationFrame(main);
-        }
-        return requestId;
+
+        win.requestAnimationFrame(main);
     }
 
-    const gameId = requestId;   
-    console.log(gameId);
     /* This function does some initial setup that should only occur once,
      * particularly setting the lastTime variable that is required for the
      * game loop.
