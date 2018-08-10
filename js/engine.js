@@ -11,7 +11,7 @@
  *
  * This engine makes the canvas' context (ctx) object globally available to make 
  * writing app.js a little simpler to work with. 
- */
+ */ 
 
  var Engine = (function(global) {
     /* Predefine the variables we'll be using within this scope,
@@ -175,7 +175,8 @@
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/char-boy.png',
+        'images/char-pink-girl.png'
     ]);
     Resources.onReady(init);
 

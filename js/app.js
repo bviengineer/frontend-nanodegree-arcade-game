@@ -17,7 +17,7 @@ class Contender {
         this.bottomBoundary = this.y;
         
         //character or sprite image 
-        this.sprite = "images/char-boy.png";
+        this.sprite = "images/char-pink-girl.png";
 
         //player points/wins
         this.points = 0;
@@ -87,7 +87,7 @@ class Enemy{
         }
     }
 }
-
+ 
 //creates enemy bugs
 const enemy1 = new Enemy(-101, 0, 475);
 const enemy2 = new Enemy(-300, 83, 575);
