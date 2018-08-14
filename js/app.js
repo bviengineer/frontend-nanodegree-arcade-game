@@ -1,3 +1,7 @@
+//modal
+//win.animationFrame again
+//develop readme
+
 //Character
 class Contender {
     constructor(){
@@ -102,7 +106,7 @@ const enemy10 = new Enemy((-200), 100, 550);
 
 //array for enemy bugs
 const allEnemies = [];  
-allEnemies.push(enemy1, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7);
+allEnemies.push(enemy1, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7, enemy8, enemy9, enemy10);
 
 //=======================================================================
 
