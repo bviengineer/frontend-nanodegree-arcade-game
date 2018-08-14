@@ -90,7 +90,7 @@
             }
         }
         return ready;
-    }
+    } 
 
     /* This function will add a function to the callback stack that is called
      * when all requested images are properly loaded.

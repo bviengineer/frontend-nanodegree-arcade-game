@@ -26,7 +26,7 @@
     var requestId;//remove if not using?
 
     canvas.width = 505;
-    canvas.height = 606;
+    canvas.height = 590;
     doc.body.appendChild(canvas);
 
     /* This function serves as the kickoff point for the game loop itself

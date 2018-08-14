@@ -6,7 +6,7 @@
 class Contender {
     constructor(){
         this.acrossX = 101; //player incremental position as they traverse across the x-axis
-        this.levelY = 83; //player incremental position as they traverse up and down the y-axis
+        this.levelY = 90; //player incremental position as they traverse up and down the y-axis
         
         this.startPositionX = this.acrossX * 2; //player's calculated starting position across x-axis
         this.startPositionY = (this.levelY * 4) + 70; //player calculated starting position across y-axis
@@ -98,7 +98,7 @@ const enemy2 = new Enemy(-300, 83, 575);
 const enemy3 = new Enemy((-200*2.5), 166, 600);
 const enemy4 = new Enemy((-200*4), 249, 700);
 const enemy5 = new Enemy((-200), 249, 800);
-const enemy6 = new Enemy((-200), 280, 900);
+const enemy6 = new Enemy((-200), 265, 900);
 const enemy7 = new Enemy((-200), 90, 875);
 const enemy8 = new Enemy((-120), 10, 975);
 const enemy9 = new Enemy((-220), 90, 675);
