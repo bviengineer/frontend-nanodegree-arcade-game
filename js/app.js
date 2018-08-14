@@ -21,7 +21,7 @@ class Contender {
         this.bottomBoundary = this.y;
         
         //character or sprite image 
-        this.sprite = "images/char-pink-girl.png";
+        this.sprite = "images/char-cat-girl.png";
 
         //player points/wins
         this.points = 0;

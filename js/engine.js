@@ -23,7 +23,7 @@
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
         lastTime;
-    var requestId;
+    var requestId;//remove if not using?
 
     canvas.width = 505;
     canvas.height = 606;
@@ -176,7 +176,8 @@
         'images/grass-block.png',
         'images/enemy-bug.png',
         'images/char-boy.png',
-        'images/char-pink-girl.png'
+        'images/char-pink-girl.png',
+        'images/char-cat-girl.png'
     ]);
     Resources.onReady(init);
 
