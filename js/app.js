@@ -2,9 +2,7 @@
 let score = document.getElementById("score"),
     gameModal = document.getElementById("modal"),
     modalContent = document.getElementById("modal-content"),
-    closeModalBtn = document.getElementById("close-modal"),
-    playAgainBtn = document.getElementById("restart-game");
-
+    closeModalBtn = document.getElementById("close-modal");
 
 //class construcor for character or player 
 class Contender {
@@ -88,14 +86,10 @@ function modal(){
 
 //Event listeners for buttons on modal
 closeModalBtn.addEventListener("click", function(){
-    player.x = player.startPositionX;
-    player.y = player.startPositionY; 
-    gameModal.style.display = "none";                
-});
-
-playAgainBtn.addEventListener("click", function(){
+    // player.x = player.startPositionX;
+    // player.y = player.startPositionY; 
     player.restartGame();
-    gameModal.style.display = "none";
+    gameModal.style.display = "none";                
 });
 
 
