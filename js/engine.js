@@ -26,7 +26,7 @@
     var requestId;//remove if not using?
 
     canvas.width = 505;
-    canvas.height = 590;
+    canvas.height = 606;
     doc.body.appendChild(canvas);
 
     /* This function serves as the kickoff point for the game loop itself
@@ -95,7 +95,8 @@
         allEnemies.forEach(function(enemy) { //this controls the gameboard appearing and disappearing 
             enemy.update(dt);
         });
-        player.update();
+        player.collisionDetection(); //update() was the original name of this function
+        player.winGame(); //executed when player wins the game; 
     }
 
     /* This function initially draws the "game level", it will then call

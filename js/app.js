@@ -1,15 +1,19 @@
-//modal
-//win.animationFrame again
-//develop readme
+//variable(s)
+let score = document.getElementById("score"),
+    gameModal = document.getElementById("modal"),
+    modalContent = document.getElementById("modal-content"),
+    closeModalBtn = document.getElementById("close-modal"),
+    playAgainBtn = document.getElementById("restart-game");
 
-//Character
+
+//class construcor for character or player 
 class Contender {
     constructor(){
         this.acrossX = 101; //player incremental position as they traverse across the x-axis
-        this.levelY = 90; //player incremental position as they traverse up and down the y-axis
+        this.levelY = 83; //player incremental position as they traverse up and down the y-axis
         
-        this.startPositionX = this.acrossX * 2; //player's calculated starting position across x-axis
-        this.startPositionY = (this.levelY * 4) + 70; //player calculated starting position across y-axis
+        this.startPositionX = this.acrossX * 2; //202 - player's calculated starting position across x-axis
+        this.startPositionY = (this.levelY * 4) + 70; //422 - player calculated starting position across y-axis
 
         this.x = this.startPositionX; //player start position on the x-axis passedd into the canvas
         this.y = this.startPositionY; //player start position on the y-axis passed into the canvas
@@ -19,19 +23,22 @@ class Contender {
         this.rightBoundary = this.x * 2;
         this.leftBoundary = this.x - this.x;
         this.bottomBoundary = this.y;
+
+        //collision boundaries
+        this.xCollisionBoundary = 3;
+        this.yCollisionBoundary = 3;
         
         //character or sprite image 
         this.sprite = "images/char-cat-girl.png";
 
         //player points/wins
         this.points = 0;
-        this.success = false;
     }
-    //display of sprite image on game board
+    //display of player on the game board
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y)
     }
-    //sets boundaries for sprite to remain within the game board
+    //sets boundaries for the player to remain within on the game board
     handleInput(input){
     if(input === "left" && this.x > this.leftBoundary){
             this.x -= this.acrossX;
@@ -41,40 +48,67 @@ class Contender {
             this.x += this.acrossX;
         } else if(input === "down" && this.y < this.bottomBoundary){
             this.y += this.levelY;
-        } 
+        }
     }
     //checks for a collision between contender & any one enemy
-   update(){
+   collisionDetection(){        
         for(let i = 0; i < allEnemies.length; i++){
-            if(this.y === allEnemies[i].y && 
-                (allEnemies[i].x + allEnemies[i].acrossX /4) > this.x && 
-                allEnemies[i].x < (this.x + this.acrossX / 4)){
+            if((this.y - allEnemies[i].y) <= this.yCollisionBoundary && 
+                (allEnemies[i].acrossX + allEnemies[i].x) < this.x && (this.x + this.acrossX) < allEnemies[i]){
+                    console.log("collision");
                     this.restartGame();                    
-                    // allEnemies[i].caughtPlayer = true; - may remove inteneded functionality 
             }
+            // console.log(this.x, allEnemies[i].x);
         }
     }
     //resets player position in the event of a collision
     restartGame(){
         this.x = this.startPositionX;
-        this.y = this.startPositionY;  
+        this.y = this.startPositionY; 
+        this.points = 0;
+        score.innerHTML = "Score Board"; 
+    }
+    winGame(){
+        if(this.y <= this.topBoundary){
+            console.log("you won the game");
+            this.points = 100;
+            score.innerHTML = "Your Score is: " + this.points;
+            modal();
+        }           
     }
 }
 
 //creates a player
 const player = new Contender();
 
-//Enemies player must avoid
+function modal(){
+    modalContent.innerHTML = "<p>Great Job!<br> You bypassed all enemies<br> Your Score is: " + player.points + "</p>";
+    gameModal.style.display = "inline";
+}
+
+//Event listeners for buttons on modal
+closeModalBtn.addEventListener("click", function(){
+    player.x = player.startPositionX;
+    player.y = player.startPositionY; 
+    gameModal.style.display = "none";                
+});
+
+playAgainBtn.addEventListener("click", function(){
+    player.restartGame();
+    gameModal.style.display = "none";
+});
+
+
+//class constructor for the enemy bugs 
 class Enemy{
     constructor(x, y, rate){
         this.x = x;
-        this.y = y + 70;
-        this.rate = rate;
+        this.y = y;
+        this.rate = rate; //enemy's speed 
         this.sprite = "images/enemy-bug.png"
         this.acrossX = 101;
         this.boundary = this.acrossX * 6;
         this.restartPosition = this.acrossX - (this.acrossX * 5);
-        // this.caughtPlayer = false; - may remove intende feature
     }
     //update enemy locations
     update(dt){
@@ -93,7 +127,7 @@ class Enemy{
 }
  
 //creates enemy bugs
-const enemy1 = new Enemy(-101, 0, 475);
+const enemy1 = new Enemy(0, 60, 475);
 const enemy2 = new Enemy(-300, 83, 575);
 const enemy3 = new Enemy((-200*2.5), 166, 600);
 const enemy4 = new Enemy((-200*4), 249, 700);
@@ -106,7 +140,7 @@ const enemy10 = new Enemy((-200), 100, 550);
 
 //array for enemy bugs
 const allEnemies = [];  
-allEnemies.push(enemy1, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7, enemy8, enemy9, enemy10);
+allEnemies.push(enemy1);
 
 //=======================================================================
 

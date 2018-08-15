@@ -8,8 +8,17 @@
     <link rel="stylesheet" href="css/style.css">
 </head>     
 <body> 
-<h4>Arcade Game</h4>
-<h5>Score Board</h5>
+    <h4>Arcade Game</h4>
+    <h5 id="score">Score Board</h5>
+    
+    <div id="modal">
+        <div id="modal-header">
+            <h2>Game Status</h2>
+        </div>
+        <div id="modal-content"></div>
+        <button id="close-modal">Close Modal</button>
+        <button id="restart-game">Play Again</button>
+    </div>
     <script src="js/resources.js"></script>
     <script src="js/app.js"></script>
     <script src="js/engine.js"></script>
