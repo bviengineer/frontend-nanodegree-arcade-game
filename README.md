@@ -9,6 +9,7 @@ For detailed instructions on how to get started, check out this [guide](https://
 Use the Up, down, left and right arrow keys to move on the game board.
 Avoid all the enemy bugs, make it to the top of the game board or the water and earn 100 points.
 Colliade an enemy bug and the game restarts.
+To play, click on the linke below or copy and paste it in your browser.
 
 
 ## Game URL 
