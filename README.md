@@ -7,15 +7,15 @@ For detailed instructions on how to get started, check out this [guide](https://
 
 ## Credits
 * [**Matthew Crawford's**](https://matthewcranford.com/blog/). blog post walkthrough series of the arcade game, provided helpful explanations during the development of this project.
-_* The 2D collision detection_ located on the [MDNs](https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection) site was instrumental in developing the collision boundaries between the player and the enemy bugs. 
+* The 2D collision detection_ located on the [MDNs](https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection) site was instrumental in developing the collision boundaries between the player and the enemy bugs. 
 
 ## Instructions
 * Use the __Up, down, left and right arrow keys__ to move around the game board.
 * Avoid all the enemy bugs, make it to the top of the game board or the water and earn 100 points.
-* Colliade with an enemy bug and the game restarts.
+* Collide with an enemy bug and the game restarts.
 * To play, click on the link below or copy and paste it in your browser.
 
 
 ## Game 
-* [Game can be played here](https://bviengineer.github.io/frontend-nanodegree-arcade-game/)
+* [Play game here](https://bviengineer.github.io/frontend-nanodegree-arcade-game/)
 
