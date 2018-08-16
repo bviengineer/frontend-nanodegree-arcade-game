@@ -7,14 +7,14 @@ let score = document.getElementById("score"),
 //class construcor for character or player 
 class Contender {
     constructor(){
-        this.acrossX = 101; //player incremental position as they traverse across the x-axis
-        this.levelY = 83; //player incremental position as they traverse up and down the y-axis
+        this.acrossX = 101; //player's incremental steps as they traverse across the game board
+        this.levelY = 83; //player's incremental steps they traverse up and down the game board
         
-        this.startPositionX = this.acrossX * 2; //202 - player's calculated starting position across x-axis
-        this.startPositionY = (this.levelY * 4) + 60; //392 - player calculated starting position across y-axis
+        this.startPositionX = this.acrossX * 2; //202 - player's calculated starting position on x-axis
+        this.startPositionY = (this.levelY * 4) + 60; //392 - player's calculated starting position on y-axis
 
-        this.x = this.startPositionX; //player start position on the x-axis passedd into the canvas
-        this.y = this.startPositionY; //player start position on the y-axis passed into the canvas
+        this.x = this.startPositionX; //player's starting position on the x-axis passed to the canvas
+        this.y = this.startPositionY; //player's starting position on the y-axis passed to the canvas
 
         //player boundaries on game board 
         this.topBoundary = this.y - this.y;
@@ -61,9 +61,10 @@ class Contender {
             //     console.log("collision");
                 //this.restartGame();
             // }
+            //collision detection concept borrowed from here: (https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection)
             if(allEnemies[i].y === this.y && allEnemies[i].x < (this.x + this.width) && (allEnemies[i].x + allEnemies[i].width) > this.x && allEnemies[i].y < (this.y + this.height) && (allEnemies[i].y + allEnemies[i].height) > this.height){
-                console.log("collision");
-                setTimeout(this.restartGame(), 2000);
+                console.log("collision"); //for testing
+                this.restartGame(); 
             }
             // console.log(this.x, this.y, Math.round(allEnemies[i].x), allEnemies[i].y);
         }
