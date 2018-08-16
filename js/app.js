@@ -22,9 +22,9 @@ class Contender {
         this.leftBoundary = this.x - this.x;
         this.bottomBoundary = this.y;
 
-        //collision boundary
-        this.collisionHighX = 2 / 2;
-        this.collisionLowX = 0;
+        //collision zone
+        this.width = 50;
+        this.height = 75;
 
         //character or sprite image 
         this.sprite = "images/char-cat-girl.png";
@@ -57,9 +57,13 @@ class Contender {
                 2. That the enemy is within the player game board boundary on the X axis(defined above)
                 3. That difference between the X position of the player and the X position of the enemy are within a specified boundary range 
             */
-            if(this.y === allEnemies[i].y && Math.round(allEnemies[i].x) > this.leftBoundary && Math.round(allEnemies[i].x) <=  this.rightBoundary && Math.round(allEnemies[i].x) <= this.collisionHighX && Math.round(allEnemies[i].x) >= this.collisionLowX){
+            // if(this.y === allEnemies[i].y && allEnemies[i].x >= this.leftBoundary && allEnemies[i].x <= this.rightBoundary && allEnemies[i].width){
+            //     console.log("collision");
+                //this.restartGame();
+            // }
+            if(allEnemies[i].y === this.y && allEnemies[i].x < (this.x + this.width) && (allEnemies[i].x + allEnemies[i].width) > this.x && allEnemies[i].y < (this.y + this.height) && (allEnemies[i].y + allEnemies[i].height) > this.height){
                 console.log("collision");
-                this.restartGame();
+                setTimeout(this.restartGame(), 2000);
             }
             // console.log(this.x, this.y, Math.round(allEnemies[i].x), allEnemies[i].y);
         }
@@ -88,7 +92,7 @@ function modal(){
     gameModal.style.display = "inline";
 }
 
-//Event listeners for buttons on modal
+//Event listener for button on modal
 closeModalBtn.addEventListener("click", function(){
     player.restartGame();
     gameModal.style.display = "none";                
@@ -104,6 +108,10 @@ class Enemy{
         this.acrossX = 101;
         this.boundary = this.acrossX * 5;
         this.restartPosition = this.acrossX - (this.acrossX * 2);
+
+        //collision zone
+        this.width = 75;
+        this.height = 50;
     }
     //update enemy locations
     update(dt){
