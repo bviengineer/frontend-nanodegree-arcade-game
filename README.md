@@ -7,7 +7,7 @@ For detailed instructions on how to get started, check out this [guide](https://
 
 ## Credits
 * [**Matthew Crawford's**](https://matthewcranford.com/blog/). blog post walkthrough series of the arcade game, provided helpful explanations during the development of this project.
-* _The 2D collision detection_ concept located on the [MDNs](https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection) site was instrumental in developing the collision boundaries between the player and the enemy bugs. 
+* _The 2D collision detection_ concept located on the [_MDNs_](https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection) site was instrumental in developing the collision boundaries between the player and the enemy bugs. 
 
 ## Instructions
 * Use the __Up, down, left and right arrow keys__ to move around the game board.
@@ -18,4 +18,4 @@ For detailed instructions on how to get started, check out this [guide](https://
 
 ## Game 
 * [Play game here](https://bviengineer.github.io/frontend-nanodegree-arcade-game/)
-
+* Alternatively, you may clone or download the repository and open the index.html file in your browser
