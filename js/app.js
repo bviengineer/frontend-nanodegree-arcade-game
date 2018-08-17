@@ -23,6 +23,8 @@ class Contender {
         this.bottomBoundary = this.y;
 
         //collision zone
+        this.upperCollisionLimit = 50;
+        this.lowerCollisionLimit = 20;
         this.width = 50;
         this.height = 75;
 
@@ -57,12 +59,8 @@ class Contender {
                 2. That the enemy is within the player game board boundary on the X axis(defined above)
                 3. That difference between the X position of the player and the X position of the enemy are within a specified boundary range 
             */
-            // if(this.y === allEnemies[i].y && allEnemies[i].x >= this.leftBoundary && allEnemies[i].x <= this.rightBoundary && allEnemies[i].width){
-            //     console.log("collision");
-                //this.restartGame();
-            // }
             //collision detection concept borrowed from here: (https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection)
-            if(allEnemies[i].y === this.y && allEnemies[i].x < (this.x + this.width) && (allEnemies[i].x + allEnemies[i].width) > this.x && allEnemies[i].y < (this.y + this.height) && (allEnemies[i].y + allEnemies[i].height) > this.height){
+            if(allEnemies[i].y === this.y || (allEnemies[i].y === 140 && this.y === 143) || (allEnemies[i].y === 230 && this.y === 226) && allEnemies[i].x < (this.x + this.width) && (allEnemies[i].x + allEnemies[i].width) > this.x && allEnemies[i].y < (this.y + this.height) && (allEnemies[i].y + allEnemies[i].height) > this.height){
                 console.log("collision"); //for testing
                 this.restartGame(); 
             }
@@ -124,25 +122,25 @@ class Enemy{
     }
     //draw the enemy on the screen, required method for game
     render(){
-        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);t c
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
 }
  
 //creates enemy bugs
 const enemyBug1 = new Enemy(0, 60, 100);
-const enemyBug2 = new Enemy(-300, 83, 575);
-const enemyBug3 = new Enemy((-200*2.5), 166, 600);
-const enemyBug4 = new Enemy((-200*4), 249, 700);
-const enemyBug5 = new Enemy((-200), 249, 800);
-const enemyBug6 = new Enemy((-200), 265, 900);
-const enemyBug7 = new Enemy((-200), 90, 875);
-const enemyBug8 = new Enemy((-120), 10, 975);
-const enemyBug9 = new Enemy((-220), 90, 675);
-const enemyBug10 = new Enemy((-200), 100, 550);
+const enemyBug2 = new Enemy(0, 140, 400);
+const enemyBug3 = new Enemy(0, 230, 600);
+// const enemyBug4 = new Enemy((-200*4), 249, 700);
+// const enemyBug5 = new Enemy((-200), 249, 800);
+// const enemyBug6 = new Enemy((-200), 265, 900);
+// const enemyBug7 = new Enemy((-200), 90, 875);
+// const enemyBug8 = new Enemy((-120), 10, 975);
+// const enemyBug9 = new Enemy((-220), 90, 675);
+// const enemyBug10 = new Enemy((-200), 100, 550);
 
 //well, with the enemyBugs variable declared at the top of the code, it erros out as undefined hmmm....so here it is...
 const allEnemies = []; 
-allEnemies.push(enemyBug1);
+allEnemies.push(enemyBug1, enemyBug2, enemyBug3);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
