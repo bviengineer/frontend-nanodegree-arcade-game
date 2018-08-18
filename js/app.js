@@ -1,3 +1,5 @@
+"use strict";
+
 //variable(s)
 let score = document.getElementById("score"),
     gameModal = document.getElementById("modal"),
