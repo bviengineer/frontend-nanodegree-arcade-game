@@ -62,7 +62,13 @@ class Contender {
                 3. That difference between the X position of the player and the X position of the enemy are within a specified boundary range 
             */
             //collision detection concept borrowed from here: (https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection)
-            if(allEnemies[i].y === this.y || (allEnemies[i].y === 140 && this.y === 143) || (allEnemies[i].y === 230 && this.y === 226) && allEnemies[i].x < (this.x + this.width) && (allEnemies[i].x + allEnemies[i].width) > this.x && allEnemies[i].y < (this.y + this.height) && (allEnemies[i].y + allEnemies[i].height) > this.height){
+            // if(allEnemies[i].y === this.y /*|| (allEnemies[i].y === 140 && this.y === 143) || (allEnemies[i].y === 230 && this.y === 226)*/ && allEnemies[i].x < (this.x + this.width) && (allEnemies[i].x + allEnemies[i].width) > this.x && allEnemies[i].y < (this.y + this.height) && (allEnemies[i].y + allEnemies[i].height) > this.height){
+
+            //Improved collision detection method assistance provided by Lip Permana during one-on-one session 8.19.18
+            if(allEnemies[i].x + allEnemies[i].width >= this.x &&
+                allEnemies[i].x <= this.x + this.width &&
+                allEnemies[i].y + allEnemies[i].height >= this.y &&
+                allEnemies[i].y <= this.y + this.height){            
                 console.log("collision"); //for testing
                 this.restartGame(); 
             }
@@ -130,8 +136,8 @@ class Enemy{
  
 //creates enemy bugs
 const enemyBug1 = new Enemy(0, 60, 100);
-const enemyBug2 = new Enemy(0, 140, 400);
-const enemyBug3 = new Enemy(0, 230, 600);
+const enemyBug2 = new Enemy(0, 140, 120);
+const enemyBug3 = new Enemy(0, 230, 150);
 // const enemyBug4 = new Enemy((-200*4), 249, 700);
 // const enemyBug5 = new Enemy((-200), 249, 800);
 // const enemyBug6 = new Enemy((-200), 265, 900);
