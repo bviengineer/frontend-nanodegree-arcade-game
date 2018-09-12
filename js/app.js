@@ -3,8 +3,8 @@
 //variable(s)
 let score = document.getElementById("score"),
     gameModal = document.getElementById("modal"),
-    modalContent = document.getElementById("modal-content"),
-    closeModalBtn = document.getElementById("close-modal");
+    modalContent = document.getElementById("modal-content");
+    //closeModalBtn = document.getElementById("close-modal");
 
 //class construcor for character or player 
 class Contender {
@@ -24,9 +24,7 @@ class Contender {
         this.leftBoundary = this.x - this.x;
         this.bottomBoundary = this.y;
 
-        //collision zone
-        this.upperCollisionLimit = 50;
-        this.lowerCollisionLimit = 20;
+        //collision zone width and height
         this.width = 50;
         this.height = 75;
 
@@ -35,6 +33,7 @@ class Contender {
 
         //player points/wins
         this.points = 0;
+        this.winner = false;
     }
     //display of player on the game board
     render() {
@@ -55,24 +54,19 @@ class Contender {
     //checks for a collision between contender & any one enemy 
    collisionDetection(){        
         for(let i = 0; i < allEnemies.length; i++){
-            /*
-                This if statement is checking to determine if there is a collision, in the following order:
-                1. That the Y position of the player and enemy are the same
-                2. That the enemy is within the player game board boundary on the X axis(defined above)
-                3. That difference between the X position of the player and the X position of the enemy are within a specified boundary range 
-            */
-            //collision detection concept borrowed from here: (https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection)
-            // if(allEnemies[i].y === this.y /*|| (allEnemies[i].y === 140 && this.y === 143) || (allEnemies[i].y === 230 && this.y === 226)*/ && allEnemies[i].x < (this.x + this.width) && (allEnemies[i].x + allEnemies[i].width) > this.x && allEnemies[i].y < (this.y + this.height) && (allEnemies[i].y + allEnemies[i].height) > this.height){
-
+            //collision detection concept can be found here: (https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection)
             //Improved collision detection method assistance provided by Lip Permana during one-on-one session 8.19.18
             if(allEnemies[i].x + allEnemies[i].width >= this.x &&
                 allEnemies[i].x <= this.x + this.width &&
                 allEnemies[i].y + allEnemies[i].height >= this.y &&
                 allEnemies[i].y <= this.y + this.height){            
                 console.log("collision"); //for testing
-                this.restartGame(); 
-            }
-            // console.log(this.x, this.y, Math.round(allEnemies[i].x), allEnemies[i].y);
+                this.winGame()
+                //this.restartGame();                 
+            } //else if(this.y <= this.topBoundary){
+            //     this.points += 40;
+            //     score.innerHTML = "Your Score is: " + this.points;
+            // }
         }
     }
     //resets player position in the event of a collision
@@ -80,30 +74,24 @@ class Contender {
         this.x = this.startPositionX;
         this.y = this.startPositionY; 
         this.points = 0;
+        this.winner = false;
         score.innerHTML = "Score Board"; 
     }
     winGame(){
         if(this.y <= this.topBoundary){
             this.points = 100;
+            this.winner = true;
             score.innerHTML = "Your Score is: " + this.points;
-            modal();
+            this.modal();
         }           
+    }
+    modal(){
+        modalContent.innerHTML = "<p>Great Job!<br> You bypassed all enemies<br> Your Score is: " + player.points + "</p>";
+        gameModal.style.display = "inline";
     }
 }
 
-//creates a player
-const player = new Contender();
-
-function modal(){
-    modalContent.innerHTML = "<p>Great Job!<br> You bypassed all enemies<br> Your Score is: " + player.points + "</p>";
-    gameModal.style.display = "inline";
-}
-
-//Event listener for button on modal
-closeModalBtn.addEventListener("click", function(){
-    player.restartGame();
-    gameModal.style.display = "none";                
-});
+const player = new Contender(); //creates a player
 
 //class constructor for the enemy bugs 
 class Enemy{
@@ -116,7 +104,7 @@ class Enemy{
         this.boundary = this.acrossX * 5;
         this.restartPosition = this.acrossX - (this.acrossX * 2);
 
-        //collision zone
+        //collision zone width & height of enemy
         this.width = 75;
         this.height = 50;
     }

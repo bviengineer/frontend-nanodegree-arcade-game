@@ -22,8 +22,18 @@
         win = global.window,
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
-        lastTime;
-    var requestId;//remove if not using?
+        lastTime, gameId;
+
+    const gameModal = document.getElementById("modal"),
+        // modalContent = document.getElementById("modal-content"),
+        closeModalBtn = document.getElementById("close-modal");
+
+        //Event listener for button on modal
+        closeModalBtn.addEventListener("click", function(){
+            player.restartGame();
+            win.cancelAnimationFrame(main);
+            gameModal.style.display = "none";                
+        });
 
     canvas.width = 505;
     canvas.height = 606;
@@ -56,8 +66,12 @@
         /* Use the browser's requestAnimationFrame function to call this
          * function again as soon as the browser is able to draw another frame.
          */
-
-        win.requestAnimationFrame(main);
+        if(player.win === true){
+            win.cancelAnimationFrame(gameId);
+        }
+        else {
+            gameId = win.requestAnimationFrame(main);
+        }        
     }
 
     /* This function does some initial setup that should only occur once,
@@ -81,7 +95,6 @@
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
     }
 
     /* This is called by the update function and loops through all of the
@@ -96,7 +109,7 @@
             enemy.update(dt);
         });
         player.collisionDetection(); //update() was the original name of this function
-        player.winGame(); //executed when player wins the game; 
+        player.winGame(); //executes when player wins the game; 
     }
 
     /* This function initially draws the "game level", it will then call
