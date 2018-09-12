@@ -54,7 +54,6 @@ class Contender {
     //checks for a collision between contender & any one enemy 
    collisionDetection(){        
         for(let i = 0; i < allEnemies.length; i++){
-            //collision detection concept can be found here: (https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection)
             //Improved collision detection method assistance provided by Lip Permana during one-on-one session 8.19.18
             if(allEnemies[i].x + allEnemies[i].width >= this.x &&
                 allEnemies[i].x <= this.x + this.width &&
@@ -62,10 +61,7 @@ class Contender {
                 allEnemies[i].y <= this.y + this.height){            
                 console.log("collision"); //for testing
                 this.restartGame()
-            } //else if(this.y <= this.topBoundary){
-            //     this.points += 40;
-            //     score.innerHTML = "Your Score is: " + this.points;
-            // }
+            } 
         }
     }
     //resets player position in the event of a collision
