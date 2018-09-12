@@ -122,20 +122,20 @@ class Enemy{
 }
  
 //creates enemy bugs
-const enemyBug1 = new Enemy(0, 60, 100);
-const enemyBug2 = new Enemy(0, 140, 120);
-const enemyBug3 = new Enemy(0, 230, 150);
-// const enemyBug4 = new Enemy((-200*4), 249, 700);
-// const enemyBug5 = new Enemy((-200), 249, 800);
-// const enemyBug6 = new Enemy((-200), 265, 900);
-// const enemyBug7 = new Enemy((-200), 90, 875);
+const enemyBug1 = new Enemy(0, 60, 150);
+const enemyBug2 = new Enemy(0, 140, 180);
+const enemyBug3 = new Enemy(0, 230, 220);
+const enemyBug4 = new Enemy((-200*4), 249, 300);
+const enemyBug5 = new Enemy((-200), 249, 400);
+const enemyBug6 = new Enemy((-200), 265, 500);
+const enemyBug7 = new Enemy((-200), 90, 600);
 // const enemyBug8 = new Enemy((-120), 10, 975);
 // const enemyBug9 = new Enemy((-220), 90, 675);
 // const enemyBug10 = new Enemy((-200), 100, 550);
 
 //well, with the enemyBugs variable declared at the top of the code, it erros out as undefined hmmm....so here it is...
 const allEnemies = []; 
-allEnemies.push(enemyBug1, enemyBug2, enemyBug3);
+allEnemies.push(enemyBug1, enemyBug2, enemyBug3, enemyBug4, enemyBug5, enemyBug6, enemyBug7);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
