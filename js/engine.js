@@ -28,11 +28,11 @@
         // modalContent = document.getElementById("modal-content"),
         closeModalBtn = document.getElementById("close-modal");
 
-        //Event listener for button on modal
+        //Event listener for button on modal which will restart game 
         closeModalBtn.addEventListener("click", function(){
             player.restartGame();
-            win.cancelAnimationFrame(main);
-            gameModal.style.display = "none";                
+            gameModal.style.display = "none";
+            win.requestAnimationFrame(main);                
         });
 
     canvas.width = 505;
@@ -66,8 +66,9 @@
         /* Use the browser's requestAnimationFrame function to call this
          * function again as soon as the browser is able to draw another frame.
          */
-        if(player.win === true){
+        if(player.winner === true){
             win.cancelAnimationFrame(gameId);
+            player.winGame();
         }
         else {
             gameId = win.requestAnimationFrame(main);

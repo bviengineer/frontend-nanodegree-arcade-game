@@ -61,8 +61,7 @@ class Contender {
                 allEnemies[i].y + allEnemies[i].height >= this.y &&
                 allEnemies[i].y <= this.y + this.height){            
                 console.log("collision"); //for testing
-                this.winGame()
-                //this.restartGame();                 
+                //this.winGame()
             } //else if(this.y <= this.topBoundary){
             //     this.points += 40;
             //     score.innerHTML = "Your Score is: " + this.points;
